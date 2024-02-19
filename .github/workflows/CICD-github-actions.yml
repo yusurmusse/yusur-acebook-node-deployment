@@ -20,14 +20,7 @@ jobs:
         uses: supercharge/mongodb-github-action@1.10.0
         with:
           mongodb-version: '5.0'
-
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-            build: npm run build
-            start: npm start
-            wait-on: http://localhost:3030
-      
+          
       - name: Install Dependencies
         run: npm install
 
@@ -35,4 +28,10 @@ jobs:
         run: npm run lint 
 
       - name: Run Test:Unit
-        run: npm run test:unit    
+        run: npm run test:unit 
+
+      - name: Cypress run/Integration Test
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm start:test
+          wait-on: http://localhost:3030
